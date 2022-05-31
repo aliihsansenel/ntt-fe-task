@@ -17,11 +17,12 @@ function OfferList() {
     } )
     
     useEffect(() => {
-        dispatch(loadOffers('case1'));
+        dispatch(loadOffers('case2'));
     }, [])
     
     return (
         <div className='Offer-List'>
+            { fetchState === 'loading' && <div className='spinner' style={{ marginTop: '5rem' }} /> }
             { fetchState === 'success' && offerList.map((offer, idx) => {
                     return <OfferItem key={idx} item={offer} />
                 })

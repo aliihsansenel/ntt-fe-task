@@ -2,6 +2,7 @@ const { default: offerFetcher } = require("fetchers/offerFetcher")
 
 
 export const loadOffers = (path) => async (dispatch, getState) => {
+    dispatch({ type: 'offer/fetchStarted' });
     const response = await offerFetcher(path);
     
     if (response.success)
