@@ -1,4 +1,5 @@
 const initialState = {
+    count: -1,
     fetchState: 'idle',
     list: []
 }
@@ -6,14 +7,19 @@ const initialState = {
 const offerReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case 'offer/fetchStarted': {
-            return { ...state, fetchState: 'loading' , list: [] };
+            if (state.count === -1)
+                return { ...state, fetchState: 'loading' , list: [] };
+            return { ...state, fetchState: 'loading' };
         }
         case 'offer/fetchSucceded': {
-            const list = payload.offerList;
-            return { ...state, fetchState: 'success' , list};
+            if (payload.hasOwnProperty('num_offers')) {
+                return { ...state, fetchState: 'success', count: payload.num_offers};
+            }
+            const offer = payload;
+            return { ...state, fetchState: 'success' , list: [...state.list, offer] };
         }
         case 'offer/fetchFailed': {
-            return { ...state, fetchState: 'fail'};
+            return { ...state, fetchState: 'fail', count: -1 };
         }
         
         default:

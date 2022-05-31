@@ -1,29 +1,16 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { loadOffers } from 'redux/actions/offerActions';
 import OfferItem from './OfferItem';
 
-function OfferList() {
+function OfferList({ sort }) {
 
-    const dispatch = useDispatch()
-
-    const { fetchState, offerList } = useSelector(state => {
-        const offers = state.offers;
-        return {
-            fetchState: offers.fetchState,
-            offerList: offers.list
-        }
-    } )
+    let offerList = useSelector(state => { return state.offers.list; } )
     
-    useEffect(() => {
-        dispatch(loadOffers('case2'));
-    }, [])
-    
+    offerList = sort ? offerList.sort((a, b) => getOfferPrice(a) - getOfferPrice(b)) : offerList;
     return (
         <div className='Offer-List'>
-            { fetchState === 'loading' && <div className='spinner' style={{ marginTop: '5rem' }} /> }
-            { fetchState === 'success' && offerList.map((offer, idx) => {
+            { offerList.length > 0 && offerList.map((offer, idx) => {
                     return <OfferItem key={idx} item={offer} />
                 })
             }
@@ -33,3 +20,9 @@ function OfferList() {
 }
 
 export default OfferList
+
+function getOfferPrice(offer) {
+    const hasDiscount = offer.QuotaInfo.HasDiscount;
+    const premiumWithDiscount = offer.QuotaInfo.PremiumWithDiscount;
+    return hasDiscount ? premiumWithDiscount : offer.Cash;
+}

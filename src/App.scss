@@ -1,3 +1,5 @@
+@import "global";
+
 .spinner {
     margin-left: auto;
     margin-right: auto;
@@ -31,4 +33,11 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+$caseContainerPadding: 3rem;
+
+.case-container {
+    padding-left: $caseContainerPadding;
+    padding-right: $caseContainerPadding;
 }

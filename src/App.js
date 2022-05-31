@@ -1,13 +1,13 @@
 import React from 'react';
 
-import './App.css';
-import Case2 from 'cases/Case2';
+import './App.scss';
+import Case3 from 'cases/Case3';
 
 function App() {
     return (
         <div className="App">
             <div className='case-container'>
-                <Case2 />
+                <Case3 />
             </div>
         </div>
     );
