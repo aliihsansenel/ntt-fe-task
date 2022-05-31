@@ -1,5 +1,8 @@
 # NTT Data Front-End Task
 
+## Live Demo
+Hosted on Netlify : [https://ntt-fe-task.netlify.app/](https://ntt-fe-task.netlify.app/).
+
 ## Task 1
 
 [commit's ](https://github.com/aliihsansenel/ntt-fe-task/commit/5ba9a0271fcdf939fd7654aa9f88f8892aaf5bfb) key: 5ba9a0271fcdf939fd7654aa9f88f8892aaf5bfb
