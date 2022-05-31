@@ -1,0 +1,123 @@
+@import "global";
+
+$offerBorderColor: rgb(190, 190, 190);
+$purchaseButtonColor: #007fbe;
+
+.Offer-List {
+    margin-left: auto;
+    margin-right: auto;
+}
+.Offer-Item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    flex-grow: 1;
+    margin: 1.0rem 1.5rem;
+    padding: 0.4rem 1.25rem 0.7rem 1.5rem;
+
+    background-color: white;
+    border: 1px solid $offerBorderColor;
+    border-radius: 4px;
+
+    .logo-cont {
+        width: 170px;
+    }
+
+    .seperator {
+        align-self: stretch;
+
+        margin: 1.5rem 1rem;
+        margin-left: 1.0rem;
+
+        >div {
+            height: 100%;
+
+            border: 0;
+            border-left: 1px solid $offerBorderColor;
+        }
+    }
+
+    >:last-child {
+        align-self: stretch;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: auto;
+        margin-top: 15px;
+        
+        flex-grow: 1;
+        text-align: end;
+        
+        .price-cont {
+            margin-bottom: 1rem;
+        }
+        input[type="button"] {
+            width: 100%;
+            min-width: 100px;
+            height: 30px;
+
+            border: 1px solid $purchaseButtonColor;
+            border-radius: 3px;
+
+            &.purchase-online {
+                background-color: $purchaseButtonColor;
+                color: white;
+                &:hover {
+                    background-color: white;
+                    color:  $purchaseButtonColor;
+                }
+            }
+            &.purchase-phonecall {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                
+                padding-top: 3px;
+                font-size: 0.6rem;
+                background-color: white;
+                color: $purchaseButtonColor;
+            }
+        }
+    }
+
+    .original-price {
+        color: rgb(41, 41, 41);
+
+        font-size: smaller;
+        font-weight: 600;
+
+        span {
+            font-size: 1.05em;
+            font-weight: normal;
+            text-decoration: line-through;
+        }
+    }
+
+    .price {
+        font-weight: bolder;
+        font-size: 1.30em;
+
+    }
+}
+
+@media only screen and (min-width: $breakPoint) {
+    .flex-break {
+        display: none;
+    }
+    .Offer-List {
+        max-width: 850px;
+    }
+    .Offer-Item {
+        height: 110px;
+
+        >:last-child {
+            flex-grow: 0;
+            input[type="button"] {
+                width: 150px;
+            }
+        }
+    }
+}
